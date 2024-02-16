@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Swing;
 
-/**
- *
- * @author josue
- */
-public class CrearCuenta extends javax.swing.JFrame {
+import Logica.UberSocial;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form CrearCuenta
-     */
-    public CrearCuenta() {
+public class CrearCuenta extends javax.swing.JFrame {
+    UberSocial Social;
+    
+    public CrearCuenta(UberSocial social) {
+        this.Social = social;
         initComponents();
     }
 
@@ -28,9 +22,9 @@ public class CrearCuenta extends javax.swing.JFrame {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        TipoDeCuenta = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        NombreDeUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -42,18 +36,18 @@ public class CrearCuenta extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TWITTER", "FACEBOOK" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 110, -1));
+        TipoDeCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TWITTER", "FACEBOOK" }));
+        jPanel1.add(TipoDeCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 110, -1));
 
         jLabel1.setText("Social Media");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 100, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        NombreDeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NombreDeUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 240, -1));
+        jPanel1.add(NombreDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 240, -1));
 
         jLabel2.setText("Nombre de usuario: ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
@@ -79,26 +73,28 @@ public class CrearCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void NombreDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreDeUsuarioActionPerformed
+    }//GEN-LAST:event_NombreDeUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        if (!NombreDeUsuario.getText().isBlank()){
+            this.Social.agregarCuenta(NombreDeUsuario.getText(), TipoDeCuenta.getSelectedItem().toString(), true);
+        } else JOptionPane.showMessageDialog(this, "Por favor ingrese un nombre de usuario", "Username", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new Log_In().setVisible(true);
+        new Log_In(Social).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NombreDeUsuario;
+    private javax.swing.JComboBox<String> TipoDeCuenta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
