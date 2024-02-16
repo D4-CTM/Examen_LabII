@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public abstract class SocialClass {
-    protected ArrayList<String> Posts, Friends;
+    public ArrayList<String> Posts, Friends;
     protected String Username;
     
     public SocialClass(String Username){
         Friends = new ArrayList();
         this.Username = Username;
         Posts = new ArrayList();
+    }
+    
+    public String getUsername(){
+        return Username;
     }
     
     public boolean addFriends(String user){

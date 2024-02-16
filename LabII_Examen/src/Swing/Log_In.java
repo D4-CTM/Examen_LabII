@@ -4,7 +4,9 @@
  */
 package Swing;
 
+import Logica.SocialClass;
 import Logica.UberSocial;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,11 +14,13 @@ import javax.swing.JOptionPane;
  * @author josue
  */
 public class Log_In extends javax.swing.JFrame {
+    public static String userLogin;
+    ArrayList<String> Usuarios;
     UberSocial Social;
-    
     public Log_In(UberSocial Social) {
         this.Social = Social;
         initComponents();
+        Usuarios = new ArrayList();
     }
 
     /**
@@ -91,7 +95,15 @@ public class Log_In extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        userLogin=Username.getText();
+        if(userLogin.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Llene el espacio de usuario");
+        }else{
+            if(Social.buscar(userLogin, 0)!=null){
+                new Post(Social).setVisible(true);
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class UberSocial {
-
-    ArrayList<SocialClass> clases = new ArrayList<>();
+    public ArrayList<SocialClass> clases;
     private String LogedIn;
 
+    public UberSocial(){
+        clases = new ArrayList<>();
+    }
+    
     public SocialClass buscar(String username, int indice) {
         if (indice < clases.size()) {
+            System.out.println(clases.get(indice).getUsername());
             if (username.equals(clases.get(indice).Username)) {
                 LogedIn = username;
                 return clases.get(indice);
@@ -55,11 +59,15 @@ public class UberSocial {
             if (Cuenta.Username.equals(User1)) {
                 for (SocialClass CuentaExiste : clases) {
                     if (CuentaExiste instanceof Facebook && Cuenta instanceof Facebook) {
-                        Cuenta.addFriends(User2);
-                        return true;
+                        if (!Cuenta.Friends.contains(User2)){
+                            Cuenta.addFriends(User2);
+                            return true;
+                        }
                     } else if (CuentaExiste instanceof Twitter && Cuenta instanceof Twitter) {
-                        Cuenta.addFriends(User2);
-                        return true;
+                        if (!Cuenta.Friends.contains(User2)){
+                            Cuenta.addFriends(User2);
+                            return true;
+                        }
                     }
                 }
             }
